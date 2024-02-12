@@ -1,0 +1,45 @@
+
+1) The code for this project was created by following the steps described at:
+
+    How to Build a Java RESTful API with Spring Boot
+    By Kelly Arellano // April 23, 2021
+    https://rapidapi.com/blog/how-to-build-an-api-with-java/
+
+2) Since we have this configuration in the maven file of this project:
+
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.0.2</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                    <targetPackage>org.example.restfullapicasetwo.rest.api.types</targetPackage>
+                    <useTitleAsClassname>true</useTitleAsClassname>
+                    <includeAdditionalProperties>false</includeAdditionalProperties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+And since we added the json schema files (that we created according to https://json-schema.org/specification and https://www.w3schools.in/json/json-schemas/#google_vignette) to the folder:
+
+    /src/main/resources/schema
+
+We run the command:
+
+    mvn generate-sources
+
+and we look for the generated classes at:
+
+./target/generated-sources/jsonschema2pojo/org/example/restfullapicasetwo/rest/api/types
+
+Then we copy these files to the folder:
+
+src/main/java/org/example/restfullapicasetwo/model
+
+or add the full path of the target folder with the types to the classpath of the project.
